@@ -10,6 +10,7 @@ public class GameScreen extends JPanel{
 
 	private Random random;
 	private BufferedImage img;
+
 	
 	private ArrayList<BufferedImage> sprites = new ArrayList<>();
 	
@@ -19,6 +20,8 @@ public class GameScreen extends JPanel{
 		loadSprites();
 		
 		random = new Random();
+		
+		
 	}
 	
 	private void loadSprites() {
@@ -46,6 +49,7 @@ public class GameScreen extends JPanel{
 				
 			}
 		}
+		
 	}
 	
 	private int getRndInt() {
