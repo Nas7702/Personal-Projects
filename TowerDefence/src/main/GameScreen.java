@@ -6,61 +6,35 @@ import java.util.*;
 
 import javax.swing.JPanel;
 
-public class GameScreen extends JPanel{
-
-	private Random random;
-	private BufferedImage img;
-
+public class GameScreen extends JPanel{;
 	
-	private ArrayList<BufferedImage> sprites = new ArrayList<>();
+	private Game game;
+	private Dimension size;
 	
-	public GameScreen(BufferedImage img) {
-		this.img = img;
+	
+	public GameScreen(Game game) {
+		this.game = game;
 		
-		loadSprites();
-		
-		random = new Random();
-		
-		
+		setPanelSize();
 	}
 	
-	private void loadSprites() {
+	private void setPanelSize() {
+		size = new Dimension(640, 640);
+		setMinimumSize(size);
+		setPreferredSize(size);
+		setMaximumSize(size);
 		
-		for(int y=0; y<10; y++) {
-			for(int x=0; x<10; x++) {
-				sprites.add(img.getSubimage(x*32, y*32, 32, 32));
-			}
-		}
 	}
+
+	
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-//		g.drawImage(sprites.get(7), 0, 0, null);
-		
-//		g.drawImage(img.getSubimage(32*9, 32, 32, 32), 0, 0, null);
-		
-		
-		
-		for(int y=0; y<20; y++) {
-			for(int x=0; x<20; x++) {
-				
-				g.drawImage(sprites.get(getRndInt()),x*32, y*32, null);
-				
-			}
-		}
+		game.getRender().render(g);
 		
 	}
 	
-	private int getRndInt() {
-		return random.nextInt(100);
-	}
 	
-	private Color getRndColor() {
-		int r = random.nextInt(256);
-		int g = random.nextInt(256);
-		int b = random.nextInt(256);
-		
-		return new Color(r,g,b);
-	}
+	
+	
 }
